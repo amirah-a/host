@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Applicant;
-use App\Models\FormQuestion;
+use M21\Formkit\Support\FormQuestionBuilder;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\Checkbox;
@@ -37,20 +37,6 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
         $this->form->fill();
     }
 
-    public function formQuestion($fieldType, $id){
-        
-        if ($fieldType === TextInput::class || $fieldType === Textarea::class) {
-            return $fieldType::make($id)
-                ->label(FormQuestion::find($id)->label)
-                ->placeholder(FormQuestion::find($id)->placeholder)
-                ->required();
-        }
-
-        return $fieldType::make($id)
-            ->label(FormQuestion::find($id)->label)
-            ->required();
-    }
-
     public function form(Schema $schema): Schema
     {
         return $schema
@@ -61,23 +47,23 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                         ->description('Your details and contact information')
                         ->schema([
                             Group::make([
-                                $this->formQuestion(TextInput::class, 'APL_FName'),
-                                $this->formQuestion(TextInput::class, 'APL_MName'),
-                                $this->formQuestion(TextInput::class, 'APL_LName'),
+                                FormQuestionBuilder::make(TextInput::class, 'APL_FName'),
+                                FormQuestionBuilder::make(TextInput::class, 'APL_MName'),
+                                FormQuestionBuilder::make(TextInput::class, 'APL_LName'),
                             ])->columns(3)
                             ->columnSpanFull(),
-                            $this->formQuestion(Textarea::class, 'APL_Address_1')
+                            FormQuestionBuilder::make(Textarea::class, 'APL_Address_1')
                                 ->columnSpanFull(),
-                            $this->formQuestion(TextInput::class, 'APL_Area'),
-                            $this->formQuestion(TextInput::class, 'APL_Gender'),
-                            $this->formQuestion(TextInput::class, 'APL_Email'),
-                            $this->formQuestion(TextInput::class, 'APL_PPhone'),
-                            $this->formQuestion(TextInput::class, 'APL_APhone'),
-                            $this->formQuestion(DatePicker::class, 'APL_DOB'),
-                            $this->formQuestion(TextInput::class, 'APL_Nationality'),
-                            $this->formQuestion(TextInput::class, 'APL_BIRTH_PIN'),
-                            $this->formQuestion(TextInput::class, 'APL_ID_TYP'),
-                            $this->formQuestion(TextInput::class, 'APL_ID_Number'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_Area'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_Gender'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_Email'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_PPhone'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_APhone'),
+                            FormQuestionBuilder::make(DatePicker::class, 'APL_DOB'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_Nationality'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_BIRTH_PIN'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_ID_TYP'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_ID_Number'),
                         ])
                         ->columns(2),
 
@@ -85,15 +71,15 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                     Step::make('Programme Details')
                         ->description('Education, experience and programme selection')
                         ->schema([
-                            $this->formQuestion(TextInput::class, 'APL_HLOE'),
-                            $this->formQuestion(TextInput::class, 'APL_Employment_Status'),
-                            $this->formQuestion(TextInput::class, 'APL_Programme'),
-                            $this->formQuestion(TextInput::class, 'APL_Attend'),
-                            $this->formQuestion(Textarea::class, 'APL_Experience')
+                            FormQuestionBuilder::make(TextInput::class, 'APL_HLOE'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_Employment_Status'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_Programme'),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_Attend'),
+                            FormQuestionBuilder::make(Textarea::class, 'APL_Experience')
                                 ->columnSpanFull(),
-                            $this->formQuestion(Textarea::class, 'APL_Future_Plans')
+                            FormQuestionBuilder::make(Textarea::class, 'APL_Future_Plans')
                                 ->columnSpanFull(),
-                            $this->formQuestion(Textarea::class, 'APL_How_Found_Programme')
+                            FormQuestionBuilder::make(Textarea::class, 'APL_How_Found_Programme')
                                 ->columnSpanFull(),
                         ])
                         ->columns(2),
@@ -102,13 +88,13 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                     Step::make('Consent & Submission')
                         ->description('Review and consent')
                         ->schema([
-                            $this->formQuestion(Checkbox::class, 'APL_Consent_Followup'),
-                            $this->formQuestion(Checkbox::class, 'APL_Subscribe_Mailing'),
-                            $this->formQuestion(Checkbox::class, 'APL_Photo_Consent'),
+                            FormQuestionBuilder::make(Checkbox::class, 'APL_Consent_Followup'),
+                            FormQuestionBuilder::make(Checkbox::class, 'APL_Subscribe_Mailing'),
+                            FormQuestionBuilder::make(Checkbox::class, 'APL_Photo_Consent'),
                             Fieldset::make('NOTE')
                             ->schema([
                                 Text::make(new HtmlString('<strong>You must read and accept the following:</strong><br> I hereby declare that the information given in this application is true and correct to the best of my knowledge and belief. If any information given in this application proves to be false or incorrect, I accept the consequences of automatic rejection of the submission and that I may be liable for any breach of the applicable Laws of the Republic of Trinidad and Tobago.')),
-                                $this->formQuestion(Checkbox::class, 'APL_Accepts'),
+                                FormQuestionBuilder::make(Checkbox::class, 'APL_Accepts'),
                             ])->columnSpanFull()
                             ->columns(1),
                         ]),
