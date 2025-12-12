@@ -8,3 +8,13 @@ Route::get('/test', function () {
 })->name('home');
 
 Route::get('/', ApplicantForm::class)->name('application');
+
+Route::get('/_debug', function () {
+    return [
+        'fullUrl' => request()->fullUrl(),
+        'root'    => request()->root(),
+        'url()'   => url('/'),
+        'scheme'  => request()->getScheme(),
+        'host'    => request()->getHost(),
+    ];
+});
