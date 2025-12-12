@@ -27,7 +27,9 @@ class Applicant extends Model
         'APL_DOB',
         'APL_Nationality',
         'APL_BIRTH_PIN',
+        'APL_Birth_File',
         'APL_ID_TYP',
+        'APL_ID_File',
         'APL_ID_Number',
 
         // Education & Skills Background
@@ -40,6 +42,7 @@ class Applicant extends Model
         'APL_Experience',
         'APL_Future_Plans',
         'APL_How_Found_Programme',
+        'APL_How_Found_Programme_Other',
 
         // Consent
         'APL_Consent_Followup',

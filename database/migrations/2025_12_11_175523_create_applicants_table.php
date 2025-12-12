@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('applications', function (Blueprint $table) {
-            $table->smallInteger('APL_ID')->primary();
+            $table->smallInteger('APL_ID')->primary()->autoIncrement();
             
             // Pre-requisite
             $table->string('APL_Will_Bring_Mirror', 1)->nullable();
@@ -26,7 +26,9 @@ return new class extends Migration {
             $table->date('APL_DOB')->nullable();
             $table->string('APL_Nationality', 40)->nullable();
             $table->string('APL_BIRTH_PIN', 100)->nullable();
+            $table->string('APL_Birth_File', 100)->nullable();
             $table->string('APL_ID_TYP', 50)->nullable();
+            $table->string('APL_ID_File', 100)->nullable();
             $table->string('APL_ID_Number', 100)->nullable();
             
             // Education & Skills Background
@@ -39,6 +41,7 @@ return new class extends Migration {
             $table->text('APL_Experience')->nullable();
             $table->string('APL_Future_Plans')->nullable();
             $table->text('APL_How_Found_Programme')->nullable();
+            $table->string('APL_How_Found_Programme_Other', 255)->nullable();
             
             // Consent
             $table->string('APL_Consent_Followup', 20)->nullable();
