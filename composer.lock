@@ -3303,7 +3303,7 @@
         },
         {
             "name": "m21/formkit",
-            "version": "1.0.6",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://codebay.msya.gov.tt/DevTeam/formkit.git",
