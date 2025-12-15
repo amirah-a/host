@@ -3303,11 +3303,11 @@
         },
         {
             "name": "m21/formkit",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://codebay.msya.gov.tt/DevTeam/formkit.git",
-                "reference": "3208f45c42122316df81f116e476d847323834ba"
+                "reference": "733c2a0469c04e90158e970b6900a0d844baa982"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -3337,7 +3337,7 @@
                 }
             ],
             "description": "Form components for M21 application programmes and related services",
-            "time": "2025-12-12T14:01:50+00:00"
+            "time": "2025-12-15T16:38:22+00:00"
         },
         {
             "name": "masterminds/html5",
