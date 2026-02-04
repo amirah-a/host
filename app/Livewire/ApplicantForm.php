@@ -27,7 +27,7 @@ use Illuminate\Support\HtmlString;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 
-#[Layout('formkit::components.layouts.portal')]
+#[Layout('vendor.formkit.components.layouts.portal')]
 class ApplicantForm extends Component implements HasActions, HasSchemas
 {
     use InteractsWithActions;
