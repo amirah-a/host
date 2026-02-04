@@ -126,6 +126,14 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                     Step::make('Programme Interest')
                         ->description('Programme selection')
                         ->schema([
+                            FormQuestionBuilder::make(Radio::class, 'APL_Previously_Participated')
+                                ->options([
+                                    '1' => 'Yes',
+                                    '0' => 'No',
+                                ])
+                                ->inline()
+                                ->live(),
+                            FormQuestionBuilder::make(Textarea::class, 'APL_Previously_Participated_Details', false)->visible(fn(Get $get) => $get('APL_Previously_Participated') == '1')->required(fn(Get $get) => $get('APL_Previously_Participated') == '1')->columnSpanFull(),
                             \Filament\Schemas\Components\View::make('form.cohorts'),
                             FormQuestionBuilder::make(Select::class, 'APL_Programme')->options([
                                 'Cohort 1' => 'Cohort 1',
@@ -146,10 +154,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                                 ->inline()
                                 ->live(),
 
-                            FormQuestionBuilder::make(Textarea::class, 'APL_Experience_Details', false)
-                                ->visible(fn(Get $get) => $get('APL_Experience') == '1')
-                                ->required(fn(Get $get) => $get('APL_Experience') == '1')
-                                ->columnSpanFull(),
+                            FormQuestionBuilder::make(Textarea::class, 'APL_Experience_Details', false)->visible(fn(Get $get) => $get('APL_Experience') == '1')->required(fn(Get $get) => $get('APL_Experience') == '1')->columnSpanFull(),
 
                             FormQuestionBuilder::make(Textarea::class, 'APL_Future_Plans')->columnSpanFull(),
                             FormQuestionBuilder::make(Select::class, 'APL_How_Found_Programme')
@@ -159,6 +164,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                                     'Television/Radio/Newspaper advertisements' => 'Television/Radio/Newspaper advertisements',
                                     'Website' => 'Website',
                                     'Friend or Family Member' => 'Friend or Family Member',
+                                    'WhatsApp' => 'WhatsApp',
                                     'Other' => 'Other',
                                 ])
                                 ->live(),
@@ -177,11 +183,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                                 ])
                                 ->inline()
                                 ->live(),
-                            FormQuestionBuilder::make(Textarea::class, 'APL_Disability_Details', false)
-                                ->visible(fn(Get $get) => $get('APL_Disability_Status') == '1')
-                                ->required(fn(Get $get) => $get('APL_Disability_Status') == '1')
-                                ->columnSpanFull(),
-
+                            FormQuestionBuilder::make(Textarea::class, 'APL_Disability_Details', false)->visible(fn(Get $get) => $get('APL_Disability_Status') == '1')->required(fn(Get $get) => $get('APL_Disability_Status') == '1')->columnSpanFull(),
 
                             FormQuestionBuilder::make(Radio::class, 'APL_Consent_Followup')
                                 ->options([

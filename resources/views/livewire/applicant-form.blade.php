@@ -13,7 +13,7 @@
                 <li>Selected participants are required to wear a white shirt and black pants or a skirt for practical sessions.</li>
             </ul>
 
-            <p><strong class="text-red-500"> DISCLAIMER:</strong> Kindly note that completing the registration does not mean you are accepted for the programme. Only shortlisted participants will be contacted.</p>
+            <p class="font-bold italic"><br><strong class="text-red-500 "> DISCLAIMER: </strong>    Completing the registration does not mean you are accepted for the programme. Only shortlisted participants will be contacted.</p>
         </div>
 
     </div>
