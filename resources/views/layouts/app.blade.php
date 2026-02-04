@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    @livewire('formkit::header-nav')
+    {{-- @livewire('formkit::header-nav') --}}
     <div class="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
         {{ $slot }}
     </div>

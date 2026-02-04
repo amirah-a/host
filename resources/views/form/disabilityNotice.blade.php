@@ -1,0 +1,1 @@
+<h2 class="font-bold text-gray-900 mb-2">This information is requested solely to ensure inclusivity and to provide appropriate support or accommodations where necessary. All responses will be treated with strict confidentiality.</h2>

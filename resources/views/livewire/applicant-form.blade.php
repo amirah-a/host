@@ -1,19 +1,21 @@
-<div>
+<div class="py-8">
     <div class="bg-gradient-to-r from-teal-50 to-purple-50 border border-teal-200 rounded-lg p-6 mb-6">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Creative Faces</h1>
-        <h2 class="text-xl font-semibold text-teal-600 mb-4 italic">"Youth Empowerment Through Makeup Artistry"</h2>
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">H.O.S.T</h1>
+        <h2 class="text-xl font-semibold text-teal-600 mb-4 italic">"Hospitality Operations and Service Training"</h2>
         
         <div class="prose prose-gray max-w-none">
             <p class="text-gray-700 leading-relaxed mb-4">
-                The Ministry of Sport and Youth Affairs, in partnership with <strong>Sacha Cosmetics Ltd.</strong>, invites young people to join a
-                two-day introductory workshop in Makeup Artistry—a creative, hands-on experience focused on developing new skills and
-                confidence under professional mentorship.
+                The Ministry of Sport and Youth Affairs (MSYA), is pleased to invite young people to register for a one-week, hands-on, industry-standard training experience in the Food and Beverage Service industry.
             </p>
-            
-            <p>Participants must bring a freestanding tabletop mirror for use during the training.</p>
 
-            <p>Participants must be 18 to 35 years old.</p>
+            <ul class="list-disc pl-6 text-gray-700 mb-4">
+                <li>Participants must be between the ages of 18–35 years</li>
+                <li>Selected participants are required to wear a white shirt and black pants or a skirt for practical sessions.</li>
+            </ul>
+
+            <p><strong class="text-red-500"> DISCLAIMER:</strong> Kindly note that completing the registration does not mean you are accepted for the programme. Only shortlisted participants will be contacted.</p>
         </div>
+
     </div>
     <form wire:submit="create">
         {{ $this->form }}
