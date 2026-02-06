@@ -85,7 +85,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                             FormQuestionBuilder::make(DatePicker::class, 'APL_DOB'),
                             FormQuestionBuilder::make(TextInput::class, 'APL_Nationality'),
                             Fieldset::make('Birth Certificate')
-                                ->schema([FormQuestionBuilder::make(TextInput::class, 'APL_BIRTH_PIN'), FormQuestionBuilder::make(FileUpload::class, 'APL_Birth_File')->maxSize(10240)->helperText('Please upload a valid image or PDF file. Size of image should not be more than 10MB.')])
+                                ->schema([FormQuestionBuilder::make(TextInput::class, 'APL_BIRTH_PIN'), FormQuestionBuilder::make(FileUpload::class, 'APL_Birth_File')->disk('public')->directory('applicants/birth-certificates')->maxSize(10240)->helperText('Please upload a valid image or PDF file. Size of image should not be more than 10MB.')])
                                 ->columnSpanFull()
                                 ->columns(1),
                             Fieldset::make('National Identification Card or Trinidad and Tobago Passport')
@@ -95,7 +95,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                                         'Trinidad and Tobago Passport' => 'Trinidad and Tobago Passport',
                                     ]),
                                     FormQuestionBuilder::make(TextInput::class, 'APL_ID_Number'),
-                                    FormQuestionBuilder::make(FileUpload::class, 'APL_ID_File')->maxSize(10240)->helperText('Please upload a valid image or PDF file. Size of image should not be more than 10MB.'),
+                                    FormQuestionBuilder::make(FileUpload::class, 'APL_ID_File')->disk('public')->directory('applicants/id-documents')->maxSize(10240)->helperText('Please upload a valid image or PDF file. Size of image should not be more than 10MB.'),
                                 ])
                                 ->columnSpanFull()
                                 ->columns(1),
@@ -222,13 +222,31 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
             ->model(Applicant::class);
     }
 
-    public function create(): void
+    public function create(): mixed
     {
         $data = $this->form->getState();
 
         $record = Applicant::create($data);
 
-        redirect()->route('application')->with('success', 'Application submitted successfully');
+        $name = "{$record->APL_FName} {$record->APL_LName}";
+        Http::withHeaders([
+            'appID' => env('SWIFT_APP_ID'),
+            'Authorization' => 'Bearer ' . env('SWIFT_TOKEN'),
+        ])->post('https://swift.msya.gov.tt/api/general', [
+            'email' => $record->APL_Email,
+            'title' => 'Hospitality Operations and Service Training Notification System',
+            'subject' => 'Hospitality Operations and Service Training Application (2026)',
+            'name' => $name,
+            'body' => 'This email serves to inform you that your application has been received.',
+            'app' => 'HOIST 2026',
+            'header' => "Thank you {$name}",
+            'fromAddress' => 'youthinfo.msya@gov.tt',
+            'fromName' => 'MSYA',
+        ]);
+
+        return redirect("https://msya.gov.tt/thank-you/?FirstName={$name}&ProgrammeName=GERIATRIC%20ADOLESCENT%20PARTNERSHIP%20PROGRAMME%202025%20");
+
+        // redirect()->route('application')->with('success', 'Application submitted successfully');
     }
 
     public function render(): View
