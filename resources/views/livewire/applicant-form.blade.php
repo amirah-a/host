@@ -20,27 +20,48 @@
         </div>
     </div>
 
-    <form wire:submit.prevent="create">
+    <form id="applicant-form" wire:submit.prevent="create">
         {{ $this->form }}
 
-        <!-- Submit button with spinner only on 'create' -->
+        <!-- Submit button -->
         <button
             type="submit"
+            id="submit-button"
             class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mt-4 flex items-center justify-center"
-            wire:loading.attr="disabled"
-            wire:target="create"
         >
-            <!-- Spinner visible only while submitting -->
-            <svg wire:loading wire:target="create" class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <!-- Spinner, hidden by default -->
+            <svg id="button-spinner" class="hidden animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
             </svg>
 
             <!-- Button text -->
-            <span wire:loading.remove wire:target="create">Submit</span>
-            <span wire:loading wire:target="create">Submitting...</span>
+            <span id="submit-text">Submit</span>
         </button>
     </form>
 
     <x-filament-actions::modals />
+
+    <!-- Persistent spinner logic -->
+    <script>
+        const form = document.getElementById('applicant-form');
+        const spinner = document.getElementById('button-spinner');
+        const submitText = document.getElementById('submit-text');
+        const submitButton = document.getElementById('submit-button');
+
+        form.addEventListener('submit', () => {
+            // Disable the button to prevent double submission
+            submitButton.disabled = true;
+
+            // Show spinner and change text
+            spinner.classList.remove('hidden');
+            submitText.textContent = 'Submitting...';
+        });
+
+        // Optional: keep spinner visible during browser navigation
+        window.addEventListener('beforeunload', () => {
+            spinner.classList.remove('hidden');
+            submitText.textContent = 'Submitting...';
+        });
+    </script>
 </div>
