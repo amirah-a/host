@@ -34,6 +34,9 @@ class Applicant extends Model
         // Education & Skills Background
         'APL_HLOE',
         'APL_Employment_Status',
+        'APL_Academic_Certificates_File',
+        'APL_Academic_Certificates_File_Names',
+
 
         // Programme Interest
         'APL_Previously_Participated',
@@ -57,6 +60,8 @@ class Applicant extends Model
 
     protected $casts = [
         'APL_DOB' => 'date',
+        'APL_Academic_Certificates_File' => 'array',
+        'APL_Academic_Certificates_File_Names' => 'array',
     ];
 
     public function uploads(): HasMany

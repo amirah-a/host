@@ -23,6 +23,7 @@ use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\HtmlString;
 use Livewire\Component;
@@ -107,12 +108,33 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                     Step::make('Education & Skills Background')
                         ->description('Education & employment status')
                         ->schema([
-                            FormQuestionBuilder::make(Select::class, 'APL_HLOE')->options([
-                                'Primary School' => 'Primary School',
-                                'Secondary School' => 'Secondary School',
-                                'Tertiary Education' => 'Tertiary Education',
-                                'Technical/Vocational' => 'Technical/Vocational',
-                            ]),
+
+                            Fieldset::make('Level of Education')
+                                ->schema([
+                                    FormQuestionBuilder::make(Select::class, 'APL_HLOE')->options([
+                                        'Primary School' => 'Primary School',
+                                        'Secondary School' => 'Secondary School',
+                                        'Tertiary Education' => 'Tertiary Education',
+                                        'Technical/Vocational' => 'Technical/Vocational',
+                                    ]),
+
+                                    FormQuestionBuilder::make(FileUpload::class, 'APL_Academic_Certificates_File')
+                                        ->multiple()
+                                        ->disk('public')
+                                        ->directory('applicants/academic-certificates')
+                                        ->storeFileNamesIn('APL_Academic_Certificates_File_Names')
+                                        ->getUploadedFileNameForStorageUsing(
+                                            fn ($file) => Str::uuid() . '.' . $file->getClientOriginalExtension()
+                                        )
+                                        ->maxSize(10240)
+                                        ->maxFiles(5)
+                                        ->enableDownload()
+                                        ->enableOpen()
+                                        ->dehydrated(),
+                                ])
+                                ->columnSpanFull()
+                                ->columns(1),
+
                             FormQuestionBuilder::make(Select::class, 'APL_Employment_Status')->options([
                                 'Employed Full Time' => 'Employed Full Time',
                                 'Employed Part Time' => 'Employed Part Time',
