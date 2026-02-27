@@ -188,6 +188,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                             FormQuestionBuilder::make(Select::class, 'APL_Programme')->options([
                                 'Cohort 1' => 'Cohort 1',
                                 'Cohort 2' => 'Cohort 2',
+                                'Cohort 3' => 'Cohort 3',
                             ]),
                             FormQuestionBuilder::make(Radio::class, 'APL_Attend')
                                 ->options([
