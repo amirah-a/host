@@ -84,7 +84,35 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                             FormQuestionBuilder::make(TextInput::class, 'APL_Email')->email(),
                             FormQuestionBuilder::make(TextInput::class, 'APL_PPhone')->tel()->telRegex('/^[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$/'),
                             FormQuestionBuilder::make(TextInput::class, 'APL_APhone', false)->tel()->telRegex('/^[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$/'),
-                            FormQuestionBuilder::make(DatePicker::class, 'APL_DOB'),
+                            FormQuestionBuilder::make(DatePicker::class, 'APL_DOB')
+                                ->live()
+                                ->afterStateUpdated(function ($state, $set) {
+                                    if (blank($state)) {
+                                        $set('APL_Age', null);
+                                        return;
+                                    }
+                                    try {
+                                        $date = \Carbon\Carbon::parse($state);
+                                        if ($date->year > 1900 && $date->isPast()) {
+                                            $set('APL_Age', $date->age);
+                                        } else {
+                                            $set('APL_Age', null);
+                                        }
+                                    } catch (\Exception $e) {
+                                        $set('APL_Age', null);
+                                    }
+                                })
+                                ->rules([
+                                    'required', 
+                                    'date',
+                                    'before_or_equal:' . now()->subYears(18)->format('Y-m-d'), // Must be at least 18
+                                    'after_or_equal:' . now()->subYears(36)->format('Y-m-d'),  // Must be no older than 35
+                                ])
+                                ->validationMessages([
+                                    'before_or_equal' => 'You must be at least 18 years old.',
+                                    'after_or_equal' => 'You must be under 35 years old.',
+                                ]),
+                            FormQuestionBuilder::make(TextInput::class, 'APL_Age')->disabled()->dehydrated(),
                             FormQuestionBuilder::make(TextInput::class, 'APL_Nationality'),
                             Fieldset::make('Birth Certificate')
                                 ->schema([FormQuestionBuilder::make(TextInput::class, 'APL_BIRTH_PIN'), FormQuestionBuilder::make(FileUpload::class, 'APL_Birth_File')->disk('public')->directory('applicants/birth-certificates')->maxSize(10240)->helperText('Please upload a valid image or PDF file. Size of image should not be more than 10MB.')])

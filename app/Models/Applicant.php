@@ -24,6 +24,7 @@ class Applicant extends Model
         'APL_PPhone',
         'APL_APhone',
         'APL_DOB',
+        'APL_Age',
         'APL_Nationality',
         'APL_BIRTH_PIN',
         'APL_Birth_File',
