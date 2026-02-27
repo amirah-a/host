@@ -103,7 +103,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                                     }
                                 })
                                 ->rules([
-                                    'required', 
+                                    'required',
                                     'date',
                                     'before_or_equal:' . now()->subYears(18)->format('Y-m-d'), // Must be at least 18
                                     'after_or_equal:' . now()->subYears(36)->format('Y-m-d'),  // Must be no older than 35
@@ -115,7 +115,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                             FormQuestionBuilder::make(TextInput::class, 'APL_Age')->disabled()->dehydrated(),
                             FormQuestionBuilder::make(TextInput::class, 'APL_Nationality'),
                             Fieldset::make('Birth Certificate')
-                                ->schema([FormQuestionBuilder::make(TextInput::class, 'APL_BIRTH_PIN'), FormQuestionBuilder::make(FileUpload::class, 'APL_Birth_File')->disk('public')->directory('applicants/birth-certificates')->maxSize(10240)->helperText('Please upload a valid image or PDF file. Size of image should not be more than 10MB.')])
+                                ->schema([FormQuestionBuilder::make(TextInput::class, 'APL_BIRTH_PIN'), FormQuestionBuilder::make(FileUpload::class, 'APL_Birth_File')->disk('public')->maxSize(10240)->helperText('Please upload a valid image or PDF file. Size of image should not be more than 10MB.')])
                                 ->columnSpanFull()
                                 ->columns(1),
                             Fieldset::make('National Identification Card or Trinidad and Tobago Passport')
@@ -125,7 +125,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                                         'Trinidad and Tobago Passport' => 'Trinidad and Tobago Passport',
                                     ]),
                                     FormQuestionBuilder::make(TextInput::class, 'APL_ID_Number'),
-                                    FormQuestionBuilder::make(FileUpload::class, 'APL_ID_File')->disk('public')->directory('applicants/id-documents')->maxSize(10240)->helperText('Please upload a valid image or PDF file. Size of image should not be more than 10MB.'),
+                                    FormQuestionBuilder::make(FileUpload::class, 'APL_ID_File')->disk('public')->maxSize(10240)->helperText('Please upload a valid image or PDF file. Size of image should not be more than 10MB.'),
                                 ])
                                 ->columnSpanFull()
                                 ->columns(1),
@@ -149,7 +149,6 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                                     FormQuestionBuilder::make(FileUpload::class, 'APL_Academic_Certificates_File')
                                         ->multiple()
                                         ->disk('public')
-                                        ->directory('applicants/academic-certificates')
                                         ->storeFileNamesIn('APL_Academic_Certificates_File_Names')
                                         ->getUploadedFileNameForStorageUsing(
                                             fn ($file) => Str::uuid() . '.' . $file->getClientOriginalExtension()
