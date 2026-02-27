@@ -5,12 +5,17 @@
 
         <div class="prose prose-gray max-w-none">
             <p class="text-gray-700 leading-relaxed mb-4">
-                The Ministry of Sport and Youth Affairs (MSYA), is pleased to invite young people to register for a one-week, hands-on, industry-standard training experience in the Food and Beverage Service industry.
+                The Ministry of Sport and Youth Affairs (MSYA), is pleased to invite young people to register for a part-time, three-month, hands-on, industry-standard training experience in the Food and Beverage Service industry.
             </p>
+
+            <h1 class="font-bold text-gray-800 mb-2">Requirements:</h1>
 
             <ul class="list-disc pl-6 text-gray-700 mb-4">
                 <li>Participants must be between the ages of 18–35 years</li>
-                <li>Selected participants are required to wear a white shirt and black pants or a skirt for practical sessions.</li>
+                {{-- <li>Selected participants are required to wear a white shirt and black pants or a skirt for practical sessions.</li> --}}
+                <li>Evidence of having completed Secondary School</li>
+                <li>Proof of Nationality - Valid National ID or Passport</li>
+                <li>A white shirt and black pants/skirt is necessary for practical sessions.</li>
             </ul>
 
             <p class="font-bold italic">
