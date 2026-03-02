@@ -6,11 +6,12 @@ use App\Models\Applicant;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\HtmlString;
 
 class ApplicationStatsOverview extends BaseWidget
 {
     // Makes it look nice on desktop (4 columns)
-    protected int | array | null $columns = 4;
+    protected int|array|null $columns = 4;
 
     // Optional: Refresh data every 30 seconds without reloading the page
     protected ?string $pollingInterval = '30s';
@@ -26,21 +27,31 @@ class ApplicationStatsOverview extends BaseWidget
         $timestamp = Carbon::now()->format('H:i:s');
 
         return [
+            // Total Card: Keep the standard look for the hero stat
             Stat::make('Total Applications', $total)
                 ->description("Last sync: {$timestamp}")
                 ->descriptionIcon('heroicon-m-arrow-path')
                 ->color('primary'),
 
-            Stat::make('Cohort 1', $c1)
-                ->icon('heroicon-m-user-group')
+            // Cohort 1: Venue at top, Number at bottom
+            Stat::make('Wallerfield Activity Centre', '') // Leave value empty
+                ->description(
+                    new HtmlString("<span class='text-3xl font-bold text-info-600 tracking-tighter'>{$c1}</span>"),
+                )
                 ->color('info'),
 
-            Stat::make('Cohort 2', $c2)
-                ->icon('heroicon-m-user-group')
+            // Cohort 2
+            Stat::make('California Youth Development Centre', '')
+                ->description(
+                    new HtmlString("<span class='text-3xl font-bold text-warning-600 tracking-tighter'>{$c2}</span>"),
+                )
                 ->color('warning'),
 
-            Stat::make('Cohort 3', $c3)
-                ->icon('heroicon-m-user-group')
+            // Cohort 3
+            Stat::make('COSTAATT City Campus, POS', '')
+                ->description(
+                    new HtmlString("<span class='text-3xl font-bold text-success-600 tracking-tighter'>{$c3}</span>"),
+                )
                 ->color('success'),
         ];
     }

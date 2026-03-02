@@ -31,7 +31,7 @@
             <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                 Real-Time Application Stats
             </h1>
-            <p class="mt-3 text-lg text-gray-500">Live distribution across program cohorts.</p>
+            <p class="mt-3 text-lg text-gray-500">Live distribution across programme cohorts.</p>
         </header>
 
         <main>
@@ -40,7 +40,7 @@
         </main>
 
         <footer class="mt-12 text-center text-sm text-gray-400">
-            &copy; {{ date('Y') }} Application Portal. Powered by Filament.
+            &copy; {{ date('Y') }} HOST Application Portal. Powered by The Ministry of Sport and Youth Affairs.
         </footer>
     </div>
 
