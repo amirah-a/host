@@ -10,12 +10,9 @@ class StatsPasskeySeeder extends Seeder
     public function run(): void
     {
         $users = [
-            // ['name' => 'Sherry-Ann Ramlal', 'email' => 'Sherry-Ann.Ramlal@gov.tt'],
-            // ['name' => 'Victoria Rampersad', 'email' => 'Victoria.Rampersad@gov.tt'],
-            // ['name' => 'Annalicia Barratt', 'email' => 'Annalicia.Barratt@gov.tt'],
-            ['name' => 'Amirah Ali', 'email' => 'Amirah.Ali@gov.tt'],
-
-
+            ['name' => 'Sherry-Ann Ramlal', 'email' => 'Sherry-Ann.Ramlal@gov.tt'],
+            ['name' => 'Victoria Rampersad', 'email' => 'Victoria.Rampersad@gov.tt'],
+            ['name' => 'Annalicia Barratt', 'email' => 'Annalicia.Barratt@gov.tt'],
         ];
 
         foreach ($users as $user) {
