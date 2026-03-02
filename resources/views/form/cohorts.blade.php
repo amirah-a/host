@@ -27,7 +27,7 @@
                     <td class="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
                     <td class="px-3 sm:px-6 py-4 text-sm text-gray-900">To Be Determined</td>
                     <td class="px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900">To Be Determined</td>
-                    <td class="px-3 sm:px-6 py-4 text-sm text-gray-900">COSTATT City Campus, Port of Spain</td>
+                    <td class="px-3 sm:px-6 py-4 text-sm text-gray-900">COSTAATT City Campus, Port of Spain</td>
                 </tr>
 
             </tbody>
