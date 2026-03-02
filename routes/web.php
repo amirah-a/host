@@ -14,19 +14,19 @@ Route::get('/test', function () {
 Route::get('/', ApplicantForm::class)->name('application');
 
 // 1. The Login Page (GET)
-Route::get('/stats/login', [StatsAuthController::class, 'show'])
+Route::get('host/stats/login', [StatsAuthController::class, 'show'])
     ->name('stats.login'); // <--- THIS IS THE MISSING PIECE
 
 // 2. The Login Submission (POST)
-Route::post('/stats/login', [StatsAuthController::class, 'login'])
+Route::post('host/stats/login', [StatsAuthController::class, 'login'])
     ->name('stats.login.post');
 
 // 3. The Protected Stats Page
-Route::get('/stats', PublicStatsController::class)
+Route::get('host/stats', PublicStatsController::class)
     ->name('stats.index')
     ->middleware(ProtectStats::class);
 
-Route::post('/stats/logout', function () {
+Route::post('host/stats/logout', function () {
     session()->forget('stats_authorized');
     return redirect()->route('stats.login');
 })->name('stats.logout');
