@@ -2,10 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\AccessCodeMail;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 
 class SendAccessCodes extends Command
 {
