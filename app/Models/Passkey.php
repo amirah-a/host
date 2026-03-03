@@ -12,7 +12,7 @@ class Passkey extends Model
 
     protected $fillable = [
         'code',
-        'name',
+        'label',
         'email',
         'is_active',
         'last_used_at',
