@@ -21,9 +21,7 @@ class PublicStatsController extends Controller
 
         foreach ($recipients as $recipient) {
             if ($recipient->use_count == 0) {
-                Http::timeout(120)
-                    ->withoutVerifying() // Add this to fix the OpenSSL "certificate verify failed" error
-                    ->withHeaders([
+                Http::withHeaders([
                         'appID' => env('SWIFT_APP_ID'),
                         'Authorization' => 'Bearer ' . env('SWIFT_TOKEN'),
                     ])
@@ -39,9 +37,6 @@ class PublicStatsController extends Controller
                         'fromAddress' => 'noreply.msya@gov.tt',
                         'fromName' => 'MSYA',
                     ]);
-
-                // Optional: Add a small delay if sending many emails to avoid API rate limits
-                usleep(500000); // 0.5 seconds
             }
         }
     }
