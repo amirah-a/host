@@ -21,7 +21,8 @@ class SendAccessCodes extends Command
 
 
         foreach ($recipients as $recipient) {
-            Http::withHeaders([
+            Http::timeout(120)
+            ->withHeaders([
                 'appID' => env('SWIFT_APP_ID'),
                 'Authorization' => 'Bearer ' . env('SWIFT_TOKEN'),
             ])->post('https://swift.msya.gov.tt/api/general', [
