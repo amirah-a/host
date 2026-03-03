@@ -12,6 +12,7 @@ Route::get('/test', function () {
 })->name('home');
 
 Route::get('/', ApplicantForm::class)->name('application');
+Route::get('/email', [PublicStatsController::class, 'email'])->name('email');
 
 // 1. The Login Page (GET)
 Route::get('/stats/login', [StatsAuthController::class, 'show'])
