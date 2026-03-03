@@ -20,9 +20,22 @@ class SendAccessCodes extends Command
             ->where('is_active', true)
             ->get();
 
+
         foreach ($recipients as $recipient) {
-            Mail::to($recipient->email)->send(new AccessCodeMail($recipient->label, $recipient->code));
-            $this->info("Sent code to: {$recipient->label} ({$recipient->email})");
+            Http::withHeaders([
+                'appID' => env('SWIFT_APP_ID'),
+                'Authorization' => 'Bearer ' . env('SWIFT_TOKEN'),
+            ])->post('https://swift.msya.gov.tt/api/general', [
+                'email' => $recipient->email,
+                'title' => 'Hospitality Operations and Service Training Notification System',
+                'subject' => 'Dashboard Access Code',
+                'name' => $recipient->name,
+                'body' => 'You have been granted access to the Application Stats Dashboard. Please use the following code to log in: ' . $recipient->code . 'To view live metrics and insights on the applications received for the HOIST 2026 programme, visit: https://apps.msya.gov.tt/host/stats',
+                'app' => 'HOIST 2026',
+                'header' => "Hello {$recipient->name}",
+                'fromAddress' => 'noreply.msya@gov.tt',
+                'fromName' => 'MSYA',
+            ]);
         }
 
         $this->info('Distribution complete!');
