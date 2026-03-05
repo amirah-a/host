@@ -11,6 +11,7 @@ Route::get('/test', function () {
     return view('welcome');
 })->name('home');
 
+
 Route::get('/', ApplicantForm::class)->name('application');
 Route::get('/email', [PublicStatsController::class, 'email'])->name('email');
 
@@ -26,6 +27,10 @@ Route::post('/stats/login', [StatsAuthController::class, 'login'])
 Route::get('/stats', PublicStatsController::class)
     ->name('stats.index')
     ->middleware(ProtectStats::class);
+
+Route::get('/closed', function () {
+    return view('503');
+})->name('closed');
 
 Route::post('/stats/logout', function () {
     session()->forget('stats_authorized');

@@ -28,6 +28,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\HtmlString;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Carbon\Carbon;
 
 #[Layout('vendor.formkit.components.layouts.portal')]
 class ApplicantForm extends Component implements HasActions, HasSchemas
@@ -37,9 +38,14 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
 
     public ?array $data = [];
 
+    protected string $applicationDeadline = '2026-03-09 23:59:59';
+
     public function mount(): void
     {
-        $this->form->fill();
+        // Only fill the form if applications are still open
+        if (!Carbon::now()->isAfter(Carbon::parse($this->applicationDeadline))) {
+            $this->form->fill();
+        }
     }
 
     public function form(Schema $schema): Schema
@@ -300,6 +306,10 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
 
     public function render(): View
     {
+        if (Carbon::now()->isAfter(Carbon::parse($this->applicationDeadline))) {
+            return view('livewire.application-closed');
+        }
+
         return view('livewire.applicant-form');
     }
 }
