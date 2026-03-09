@@ -14,10 +14,10 @@ class FormQuestion extends Model
 
     protected $keyType = 'string';
 
-    protected $fillable = [
-        'id',
-        'label',
-        'placeholder',
-        'field_type',
-    ];
+    protected $fillable = ['id', 'label', 'placeholder', 'field_type'];
+
+    public static function getFieldLabel($field)
+    {
+        return FormQuestion::where('id', $field)->value('label') ?? $field;
+    }
 }

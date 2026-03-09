@@ -5,6 +5,7 @@ use App\Livewire\ApplicantForm;
 use App\Http\Controllers\PublicStatsController;
 use App\Http\Middleware\ProtectStats;
 use App\Http\Controllers\StatsAuthController;
+use App\Filament\Resources\Applicants\Pages\TestViewApplicant;
 
 
 Route::get('/test', function () {
@@ -36,6 +37,7 @@ Route::post('/stats/logout', function () {
     session()->forget('stats_authorized');
     return redirect()->route('stats.login');
 })->name('stats.logout');
+
 
 Route::get('/_debug', function () {
     return [
