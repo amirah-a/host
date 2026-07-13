@@ -38,7 +38,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
 
     public ?array $data = [];
 
-    protected string $applicationDeadline = '2026-03-09 23:59:59';
+    protected string $applicationDeadline = '2027-03-09 23:59:59';
 
     public function mount(): void
     {

@@ -13,7 +13,7 @@
 
                 <!-- Logo -->
                 <a href="https://www.msya.gov.tt" class="flex justify-center">
-                    <img src="{{ asset('images/msya-logo.png') }}" alt="MSYA Logo" class="h-20 w-auto object-contain">
+                    <img src="{{ asset('images/msya-logo.png') }}" alt="MSYA Logo" class="" style="max-width:100%; height: auto; width:15rem;">
                 </a>
 
                 <!-- Title -->
@@ -35,7 +35,7 @@
                 <p class="text-gray-700 text-base text-center gap-2">
                     <i class="bi bi-info-circle text-teal-600"></i>
                     For more information, please visit our
-                    <a href="https://www.msya.gov.tt/our-programmes" class="text-blue-600 hover:text-blue-700 font-medium">
+                    <a href="https://www.msya.gov.tt" class="text-blue-600 hover:text-blue-700 font-medium">
                         website
                     </a>
                     or email us at
