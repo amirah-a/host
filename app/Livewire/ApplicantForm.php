@@ -157,7 +157,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                                         ->disk('public')
                                         ->storeFileNamesIn('APL_Academic_Certificates_File_Names')
                                         ->getUploadedFileNameForStorageUsing(
-                                            fn ($file) => Str::uuid() . '.' . $file->getClientOriginalExtension()
+                                            fn($file) => Str::uuid() . '.' . $file->getClientOriginalExtension()
                                         )
                                         ->maxSize(10240)
                                         ->maxFiles(5)
@@ -192,9 +192,8 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
                             FormQuestionBuilder::make(Textarea::class, 'APL_Previously_Participated_Details', false)->visible(fn(Get $get) => $get('APL_Previously_Participated') == '1')->required(fn(Get $get) => $get('APL_Previously_Participated') == '1')->columnSpanFull(),
                             \Filament\Schemas\Components\View::make('form.cohorts'),
                             FormQuestionBuilder::make(Select::class, 'APL_Programme')->options([
-                                'Cohort 1' => 'Cohort 1',
-                                'Cohort 2' => 'Cohort 2',
-                                'Cohort 3' => 'Cohort 3',
+                                'Cohort 3A' => 'Cohort 3 Group A | Mondays and Wednesdays',
+                                'Cohort 3B' => 'Cohort 3 Group B | Tuesdays and Thursdays',
                             ]),
                             FormQuestionBuilder::make(Radio::class, 'APL_Attend')
                                 ->options([
