@@ -5,7 +5,9 @@
 
         <div class="prose prose-gray max-w-none">
             <p class="text-gray-700 leading-relaxed mb-4">
-                The Ministry of Sport and Youth Affairs (MSYA), is pleased to invite young people to register for a part-time, three-month, hands-on, industry-standard training experience in the Food and Beverage Service industry.
+                The Ministry of Sport and Youth Affairs (MSYA), is pleased to invite young people to register for a
+                part-time, three-month, hands-on, industry-standard training experience in the Food and Beverage Service
+                industry.
             </p>
 
             <h1 class="font-bold text-gray-800 mb-2">Requirements:</h1>
@@ -20,7 +22,8 @@
 
             <p class="font-bold italic">
                 <br><strong class="text-red-500">DISCLAIMER: </strong>
-                Completing the registration does not mean you are accepted for the programme. Only shortlisted participants will be contacted.
+                Completing the registration does not mean you are accepted for the programme. Only shortlisted
+                participants will be contacted.
             </p>
         </div>
     </div>
@@ -29,14 +32,13 @@
         {{ $this->form }}
 
         <!-- Submit button -->
-        <button
-            type="submit"
-            id="submit-button"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mt-4 flex items-center justify-center"
-        >
+        <button type="submit" id="submit-button"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mt-4 flex items-center justify-center">
             <!-- Spinner, hidden by default -->
-            <svg id="button-spinner" class="hidden animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <svg id="button-spinner" class="hidden animate-spin h-5 w-5 mr-2 text-white"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                </circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
             </svg>
 
@@ -48,25 +50,20 @@
     <x-filament-actions::modals />
 
     <!-- Persistent spinner logic -->
-    <script>
-        const form = document.getElementById('applicant-form');
-        const spinner = document.getElementById('button-spinner');
-        const submitText = document.getElementById('submit-text');
-        const submitButton = document.getElementById('submit-button');
+    @script
+        <script>
+            const form = document.getElementById('applicant-form');
+            const spinner = document.getElementById('button-spinner');
+            const submitText = document.getElementById('submit-text');
+            const submitButton = document.getElementById('submit-button');
 
-        form.addEventListener('submit', () => {
-            // Disable the button to prevent double submission
-            submitButton.disabled = true;
-
-            // Show spinner and change text
-            spinner.classList.remove('hidden');
-            submitText.textContent = 'Submitting...';
-        });
-
-        // Optional: keep spinner visible during browser navigation
-        window.addEventListener('beforeunload', () => {
-            spinner.classList.remove('hidden');
-            submitText.textContent = 'Submitting...';
-        });
-    </script>
+            if (form) {
+                form.addEventListener('submit', () => {
+                    submitButton.disabled = true;
+                    spinner.classList.remove('hidden');
+                    submitText.textContent = 'Submitting...';
+                });
+            }
+        </script>
+    @endscript
 </div>
