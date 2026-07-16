@@ -27,7 +27,7 @@ class SendAccessCodes extends Command
                 'Authorization' => 'Bearer ' . env('SWIFT_TOKEN'),
             ])->post('https://swift.msya.gov.tt/api/general', [
                 'email' => $recipient->email,
-                'title' => 'Hospitality Operations and Service Training Notification System',
+                'title' => 'Hospitality Operations Service Training Notification System',
                 'subject' => 'Dashboard Access Code',
                 'name' => $recipient->label,
                 'body' => 'You have been granted access to the Application Stats Dashboard. Please use the following code to log in: ' . $recipient->code . 'To view live metrics and insights on the applications received for the HOIST 2026 programme, visit: https://apps.msya.gov.tt/host/stats',

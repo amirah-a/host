@@ -28,7 +28,7 @@
                 <p class="text-gray-700 text-base leading-relaxed">
                     Thank you for your interest in
                     <span class="font-semibold text-gray-800">{{ config('app.name') }}</span>.
-                    The application period for the Hospitality Operations and Service Training (2026) is now closed.
+                    The application period for the Hospitality Operations Service Training (2026) is now closed.
                 </p>
 
                 <!-- Contact info -->

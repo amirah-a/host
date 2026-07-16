@@ -289,8 +289,8 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
             'Authorization' => 'Bearer ' . env('SWIFT_TOKEN'),
         ])->post('https://swift.msya.gov.tt/api/general', [
             'email' => $record->APL_Email,
-            'title' => 'Hospitality Operations and Service Training Notification System',
-            'subject' => 'Hospitality Operations and Service Training Application (2026)',
+            'title' => 'Hospitality Operations Service Training Notification System',
+            'subject' => 'Hospitality Operations Service Training Application (2026)',
             'name' => $name,
             'body' => 'This email serves to inform you that your application has been received.',
             'app' => 'HOIST 2026',
@@ -299,7 +299,7 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
             'fromName' => 'MSYA',
         ]);
 
-        $programmeName = "Hospitality Operations and Service Training Programme 2026";
+        $programmeName = "Hospitality Operations Service Training Programme 2026";
         return redirect("https://msya.gov.tt/thank-you/?FirstName={$name}&ProgrammeName=" . urlencode($programmeName));
     }
 

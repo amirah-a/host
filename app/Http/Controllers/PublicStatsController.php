@@ -27,7 +27,7 @@ class PublicStatsController extends Controller
                     ])
                     ->post('https://swift.msya.gov.tt/api/general', [
                         'email' => $recipient->email,
-                        'title' => 'Hospitality Operations and Service Training Notification System',
+                        'title' => 'Hospitality Operations Service Training Notification System',
                         'subject' => 'Dashboard Access Code',
                         'name' => $recipient->label,
                         // Added a space and period after the code for better formatting

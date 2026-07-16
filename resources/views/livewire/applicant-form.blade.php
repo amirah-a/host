@@ -1,7 +1,7 @@
 <div class="py-8">
     <div class="bg-gradient-to-r from-teal-50 to-purple-50 border border-teal-200 rounded-lg p-6 mb-6">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">H.O.S.T</h1>
-        <h2 class="text-xl font-semibold text-teal-600 mb-4 italic">"Hospitality Operations and Service Training"</h2>
+        <h2 class="text-xl font-semibold text-teal-600 mb-4 italic">"Hospitality Operations Service Training"</h2>
 
         <div class="prose prose-gray max-w-none">
             <p class="text-gray-700 leading-relaxed mb-4">
