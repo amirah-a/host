@@ -16,7 +16,7 @@
                 </div>
 
                 <h1 class="text-2xl font-extrabold tracking-tight">Application Complete</h1>
-                <p class="text-xs text-teal-50 font-bold uppercase tracking-widest mt-1">H.O.S.T. Training Program</p>
+                <p class="text-xs text-teal-50 font-bold uppercase tracking-widest mt-1">H.O.S.T. Training Programme</p>
             </div>
 
             <!-- Content Body -->
