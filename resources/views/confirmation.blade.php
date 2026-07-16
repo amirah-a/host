@@ -63,7 +63,7 @@
                         <div>
                             <h4 class="text-sm font-bold text-gray-800">Application Review</h4>
                             <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">
-                                Our committee will review your application details to verify program eligibility.
+                                Our committee will review your application details to verify programme eligibility.
                             </p>
                         </div>
                     </div>
