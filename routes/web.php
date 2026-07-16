@@ -5,6 +5,7 @@ use App\Livewire\ApplicantForm;
 use App\Http\Controllers\PublicStatsController;
 use App\Http\Middleware\ProtectStats;
 use App\Http\Controllers\StatsAuthController;
+use App\Http\Controllers\IndexController;
 use App\Filament\Resources\Applicants\Pages\TestViewApplicant;
 
 
@@ -12,6 +13,7 @@ Route::get('/test', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/thank-you', [IndexController::class, 'confirmation'])->name('confirmation');
 
 Route::get('/', ApplicantForm::class)->name('application');
 Route::get('/email', [PublicStatsController::class, 'email'])->name('email');

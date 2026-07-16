@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Applicant;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 use M21\Formkit\Support\FormQuestionBuilder;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -281,32 +282,50 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
     {
         $data = $this->form->getState();
 
+        // Create application record
         $record = Applicant::create($data);
 
         $name = "{$record->APL_FName} {$record->APL_LName}";
-        Http::withHeaders([
-            'appID' => env('SWIFT_APP_ID'),
-            'Authorization' => 'Bearer ' . env('SWIFT_TOKEN'),
-        ])->post('https://swift.msya.gov.tt/api/general', [
-            'email' => $record->APL_Email,
-            'title' => 'Hospitality Operations Service Training Notification System',
-            'subject' => 'Application Received | HOST 2026',
-            'name' => $name,
-            'body' => '
-                    <p>This email confirms that your application has been successfully received.</p>
-
-                    <p>Please note that <strong>submission of an application does not constitute acceptance</strong> into the programme.</p>
-
-                    <p>Only <strong>shortlisted applicants</strong> will be contacted regarding the next stage of the selection process.</p>
-
-                    <p>Thank you for your interest.</p>
-            ',
-            'fromAddress' => 'youthinfo.msya@gov.tt',
-            'fromName' => 'MSYA',
-        ]);
-
         $programmeName = "Hospitality Operations Service Training Programme 2026";
-        return redirect("https://msya.gov.tt/thank-you/?FirstName={$name}&ProgrammeName=" . urlencode($programmeName));
+
+        // Send confirmation email
+        // Http::withHeaders([
+        //     'appID' => env('SWIFT_APP_ID'),
+        //     'Authorization' => 'Bearer ' . env('SWIFT_TOKEN'),
+        // ])->post('https://swift.msya.gov.tt/api/general', [
+        //     'email' => $record->APL_Email,
+        //     'title' => 'Hospitality Operations Service Training Notification System',
+        //     'subject' => 'Application Received | HOST 2026',
+        //     'name' => $name,
+        //     'body' => '
+        //     <p>This email confirms that your application has been successfully received.</p>
+
+        //     <p>Please note that <strong>submission of an application does not constitute acceptance</strong> into the programme.</p>
+
+        //     <p>Only <strong>shortlisted applicants</strong> will be contacted regarding the next stage of the selection process.</p>
+
+        //     <p>Thank you for your interest.</p>
+        // ',
+        //     'fromAddress' => 'youthinfo.msya@gov.tt',
+        //     'fromName' => 'MSYA',
+        // ]);
+
+        // Generate temporary token for confirmation page
+        $token = Str::random(64);
+
+        Cache::put(
+            "confirmation:$token",
+            [
+                'FirstName' => $name,
+                'ProgrammeName' => $programmeName,
+            ],
+            now()->addMinutes(15)
+        );
+
+        // Redirect to confirmation page using APP_URL
+        return redirect()->away(
+            rtrim(config('app.url'), '/') . '/thank-you?token=' . $token
+        );
     }
 
     public function render(): View
