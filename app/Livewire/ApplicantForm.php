@@ -290,11 +290,17 @@ class ApplicantForm extends Component implements HasActions, HasSchemas
         ])->post('https://swift.msya.gov.tt/api/general', [
             'email' => $record->APL_Email,
             'title' => 'Hospitality Operations Service Training Notification System',
-            'subject' => 'Hospitality Operations Service Training Application (2026)',
+            'subject' => 'Application Received | HOST 2026',
             'name' => $name,
-            'body' => 'This email serves to inform you that your application has been received.',
-            'app' => 'HOIST 2026',
-            'header' => "Thank you {$name}",
+            'body' => '
+                    <p>This email confirms that your application has been successfully received.</p>
+
+                    <p>Please note that <strong>submission of an application does not constitute acceptance</strong> into the programme.</p>
+
+                    <p>Only <strong>shortlisted applicants</strong> will be contacted regarding the next stage of the selection process.</p>
+
+                    <p>Thank you for your interest.</p>
+            ',
             'fromAddress' => 'youthinfo.msya@gov.tt',
             'fromName' => 'MSYA',
         ]);
